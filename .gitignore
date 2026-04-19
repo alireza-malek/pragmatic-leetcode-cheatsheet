@@ -1,0 +1,21 @@
+# dependencies
+node_modules
+.pnpm-store
+
+# generated files
+.vitepress/dist
+.vitepress/cache
+
+# environment variables
+.env
+
+# editor directories and files
+.idea
+.vscode
+.cursor
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store

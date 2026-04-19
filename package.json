@@ -1,0 +1,33 @@
+{
+  "name": "pragmatic-leetcode-cheatsheet",
+  "version": "1.0.0",
+  "description": "A curated collection of common technical interview patterns. Optimized for both quick reviews and detailed problem breakdowns.",
+  "type": "module",
+  "homepage": "https://github.com/pragmatic-leetcode-cheatsheet",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alireza-malek/pragmatic-leetcode-cheatsheet.git"
+  },
+  "author": "Alireza Malek",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "dependencies": {
+    "vue": "^3.5.x"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.x",
+    "eslint": "^10.2.x",
+    "eslint-plugin-vue": "^10.8.x",
+    "gray-matter": "^4.0.3",
+    "ts-node": "^10.9.x",
+    "typescript": "^5.x",
+    "typescript-eslint": "^8.58.x",
+    "vitepress": "^1.6.x"
+  }
+}

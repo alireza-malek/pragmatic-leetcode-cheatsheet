@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="100%" height="100%">
+  <defs>
+    <style>
+      .logo-path {
+        fill: none;
+        stroke: #3e63dd;
+        stroke-width: 7.6;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+    </style>
+  </defs>
+
+  <!-- Group containing all elements -->
+  <g class="logo-path">
+    
+    <!-- Left Curly Bracket -->
+    <path d="
+      M 25.6,22.4 
+      L 19.2,22.4 
+      A 6.4,6.4 0 0,0 12.8,28.8 
+      L 12.8,41.6 
+      A 6.4,6.4 0 0,1 6.4,48 
+      A 6.4,6.4 0 0,1 12.8,54.4 
+      L 12.8,67.2 
+      A 6.4,6.4 0 0,0 19.2,73.6 
+      L 25.6,73.6
+    "/>
+
+    <!-- Right Curly Bracket -->
+    <path d="
+      M 70.4,22.4 
+      L 76.8,22.4 
+      A 6.4,6.4 0 0,1 83.2,28.8 
+      L 83.2,41.6 
+      A 6.4,6.4 0 0,0 89.6,48 
+      A 6.4,6.4 0 0,0 83.2,54.4 
+      L 83.2,67.2 
+      A 6.4,6.4 0 0,1 76.8,73.6 
+      L 70.4,73.6
+    "/>
+
+    <!-- Center Check-Mark -->
+    <path d="
+      M 35.2,49.6 
+      L 44.8,59.2 
+      L 62.4,36.8
+    "/>
+    
+  </g>
+</svg>

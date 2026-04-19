@@ -1,0 +1,20 @@
+impl Solution {
+    pub fn gcd_of_strings(str1: String, str2: String) -> String {
+        // If concatenations in both orders differ, no common divisor exists
+        if format!("{}{}", str1, str2) != format!("{}{}", str2, str1) {
+            return String::new();
+        }
+
+        // The GCD string length mirrors numeric GCD of the two lengths
+        str1[..Self::gcd(str1.len(), str2.len())].to_string()
+    }
+
+    fn gcd(mut a: usize, mut b: usize) -> usize {
+        while b != 0 {
+            let temp = b;
+            b = a % b;
+            a = temp;
+        }
+        a
+    }
+}
