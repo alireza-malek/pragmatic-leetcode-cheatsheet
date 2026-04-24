@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
+import { withBase } from "vitepress";
 import { useProblems } from "../composables/useProblems";
 import { useFilters } from "../composables/useFilters";
 import TagFilter from "./TagFilter.vue";
@@ -75,6 +76,10 @@ function frequencyDots(value: number) {
   const normalized = Math.max(0, Math.min(5, value || 0));
   return Array.from({ length: 5 }, (_, idx) => idx < normalized);
 }
+
+function problemHref(link: string) {
+  return withBase(link);
+}
 </script>
 
 <template>
@@ -106,7 +111,7 @@ function frequencyDots(value: number) {
         v-for="problem in paginatedProblems"
         :key="problem.number"
         class="problem-card"
-        :href="problem.link"
+        :href="problemHref(problem.link)"
       >
         <span class="problem-card__number">{{ problem.number }}</span>
         <span class="problem-card__main">

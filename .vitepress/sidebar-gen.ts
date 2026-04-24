@@ -11,8 +11,8 @@ export function generateSidebar() {
 
   const problemDirs = fs
     .readdirSync(problemsDir)
-    .filter((entry) => /-.+$/.test(entry))
     .filter((entry) => fs.statSync(path.join(problemsDir, entry)).isDirectory())
+    .filter((entry) => fs.existsSync(path.join(problemsDir, entry, 'index.md')))
     .sort()
 
   const grouped: Record<string, SidebarItem[]> = {}
@@ -24,12 +24,13 @@ export function generateSidebar() {
     const raw = fs.readFileSync(mdPath, 'utf-8')
     const { data } = matter(raw)
     const primaryTopic = Array.isArray(data.topics) ? data.topics[0] : 'Other'
+    const slug = typeof data.slug === 'string' && data.slug ? data.slug : dir.replace(/^\d+-/, '')
 
     if (!grouped[primaryTopic]) grouped[primaryTopic] = []
 
     grouped[primaryTopic].push({
       text: `${data.number}. ${data.title}`,
-      link: `/problems/${dir}/`,
+      link: `/problems/${slug}/`,
       number: Number(data.number),
     })
   }

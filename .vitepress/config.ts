@@ -1,13 +1,16 @@
 import { defineConfig } from 'vitepress'
 import { generateSidebar } from './sidebar-gen'
 import { solutionLoaderPlugin } from './solution-loader-plugin'
+import { generateProblemRewrites } from './problem-rewrites'
+
+const base = process.env.VITE_BASE_PATH || '/'
 
 export default defineConfig({
   title: 'Pragmatic LeetCode Cheat-Sheet',
   description: 'High-Yield LeetCode Problems - Patterns & Solutions',
-  base: process.env.VITE_BASE_PATH || undefined,
+  base,
   head: [
-    ['link', { rel: 'icon', href: '/logo.svg', type: 'image/svg+xml' }],
+    ['link', { rel: 'icon', href: `${base}logo.svg`, type: 'image/svg+xml' }],
     ['meta', { name: 'theme-color', content: '#3e63dd' }],
   ],
   themeConfig: {
@@ -36,4 +39,5 @@ export default defineConfig({
   markdown: {
     lineNumbers: true,
   },
+  rewrites: generateProblemRewrites(),
 })

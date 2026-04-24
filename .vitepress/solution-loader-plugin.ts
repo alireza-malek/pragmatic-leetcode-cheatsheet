@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import type { Plugin } from 'vitepress'
 import { createMarkdownRenderer } from 'vitepress'
+import matter from 'gray-matter'
 
 const VIRTUAL_ID = 'virtual:solutions'
 const RESOLVED_ID = `\0${VIRTUAL_ID}`
@@ -43,12 +44,15 @@ export function solutionLoaderPlugin(): Plugin {
 
     const problemDirs = fs
       .readdirSync(problemsDir)
-      .filter((entry) => /-.+$/.test(entry))
       .filter((entry) => fs.statSync(path.join(problemsDir, entry)).isDirectory())
+      .filter((entry) => fs.existsSync(path.join(problemsDir, entry, 'index.md')))
       .sort()
 
     for (const dir of problemDirs) {
-      const number = +dir.split('-')[0];
+      const mdPath = path.join(problemsDir, dir, 'index.md')
+      const { data } = matter(fs.readFileSync(mdPath, 'utf-8'))
+      const number = Number(data.number)
+      if (!Number.isFinite(number)) continue
       const solutionDir = path.join(problemsDir, dir, 'solutions')
       if (!fs.existsSync(solutionDir)) continue
 

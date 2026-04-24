@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted } from "vue";
-import { useRouter } from "vitepress";
+import { useRouter, withBase } from "vitepress";
 import { useProblems } from "../composables/useProblems";
 
 const props = defineProps<{ current: number }>();
@@ -11,12 +11,16 @@ const prev = computed(() => getPrevProblem(props.current));
 const next = computed(() => getNextProblem(props.current));
 
 function navigate(link: string) {
-  router.go(link);
+  router.go(withBase(link));
 }
 
 function navigateSection(link?: string) {
   if (!link) return;
   navigate(link);
+}
+
+function problemHref(link: string) {
+  return withBase(link);
 }
 
 function onKeydown(event: KeyboardEvent) {
@@ -44,7 +48,7 @@ onUnmounted(() => window.removeEventListener("keydown", onKeydown));
     >
       <a
         v-if="prev"
-        :href="prev.link"
+        :href="problemHref(prev.link)"
         class="problem-nav__link"
       >
         <span
@@ -87,7 +91,7 @@ onUnmounted(() => window.removeEventListener("keydown", onKeydown));
     >
       <a
         v-if="next"
-        :href="next.link"
+        :href="problemHref(next.link)"
         class="problem-nav__link"
       >
         <span class="problem-nav__label">#{{ next.number }} {{ next.title }}</span>
